@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verb Study Practice</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #17324d;
+      --blue: #245985;
+      --blue-deep: #173f63;
+      --gold: #f4bb45;
+      --paper: #fffdf7;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: "DM Sans", sans-serif; color: var(--ink); }
+    .study-shell { width: 100%; min-height: 100vh; background: #f5f1e8; }
+    .paper-grid {
+      background-color: var(--paper);
+      background-image: linear-gradient(rgba(36,89,133,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(36,89,133,.045) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .title-font { font-family: "Fraunces", serif; }
+    .tab-button { border-bottom: 3px solid transparent; transition: .2s ease; }
+    .tab-button.active { color: var(--blue-deep); border-color: var(--gold); background: #fff8df; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: rise .28s ease-out; }
+    .flashcard { perspective: 1000px; min-height: 290px; cursor: pointer; }
+    .flash-inner { position: relative; width: 100%; height: 100%; min-height: 290px; transform-style: preserve-3d; transition: transform .55s ease; }
+    .flashcard.is-revealed .flash-inner { transform: rotateY(180deg); }
+    .flash-face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 1.25rem; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; }
+    .flash-back { transform: rotateY(180deg); }
+    @keyframes rise { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+    button:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .verb-row:nth-child(even) { background: rgba(237,243,247,.72); }
+  </style>
+ </head>
+ <body>
+  <div class="study-shell">
+   <header class="bg-[#245985] text-white border-b-4 border-[#f4bb45]">
+    <div class="w-full max-w-6xl mx-auto px-5 py-7 sm:px-8">
+     <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+       <p class="text-sm font-semibold tracking-[0.13em] uppercase text-[#dcecf5]">English Grammar</p>
+       <h1 class="title-font mt-1 text-3xl leading-tight">Verb Study &amp; Pronunciation</h1>
+      </div>
+     </div>
+    </div>
+   </header>
+   <main class="w-full max-w-6xl mx-auto px-5 py-7 sm:px-8 sm:py-10">
+    <nav aria-label="Study sections" class="mb-6">
+     <div class="grid grid-cols-3 rounded-xl overflow-hidden border border-[#d6e1e8] bg-white shadow-sm">
+      <button class="tab-button active px-3 py-4 text-sm font-bold text-[#416078]" type="button" data-tab="table">Verb List</button> 
+      <button class="tab-button px-3 py-4 text-sm font-bold text-[#416078]" type="button" data-tab="cards">Flashcards</button> 
+      <button class="tab-button px-3 py-4 text-sm font-bold text-[#416078]" type="button" data-tab="quiz">Practice</button>
+     </div>
+    </nav>
